@@ -1,0 +1,12 @@
+<nav class="navbar navbar-full navbar-dark bg-primary">
+  {{link-to 'Home' 'index' class="navbar-brand"}}
+  <div class="nav navbar-nav">
+    {{link-to 'Sign Up' 'user.create-user' class="nav-item nav-link"}}
+    {{link-to 'Sign In' 'user.sign-in' class="nav-item nav-link"}}
+    {{link-to 'View Auction' 'auction.view-auction' 1234 class="nav-item nav-link"}}
+  </div>
+</nav>
+
+<div class="container">
+  {{outlet}}
+</div>

@@ -7,6 +7,15 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('user', function() {
+    this.route('create-user');
+    this.route('sign-in');
+  });
+
+  this.route('auction', function() {
+    this.route('view-auction', { path: 'view-auction/:auction_id' });
+  });
+
 });
 
 export default Router;
