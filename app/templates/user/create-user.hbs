@@ -21,10 +21,10 @@
 
   <div class="form-check">
     <label class="form-check-label">
-    <input type="checkbox" class="form-check-input"> Ability to buy</label><br>
+    {{input type="checkbox" class="form-check-input" checked=canBuy}} Ability to buy</label><br>
     <label class="form-check-label">
-    <input type="checkbox" class="form-check-input"> Ability to sell</label>
+    {{input type="checkbox" class="form-check-input" checked=canSell}} Ability to sell</label>
   </div>
 
-  <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Submit</button>
+  <button {{action "submitUserForm"}} style="margin-top: 10px;" type="submit" class="btn btn-primary">Submit</button>
 </form>

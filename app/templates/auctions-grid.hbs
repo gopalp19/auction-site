@@ -1,0 +1,7 @@
+<h1 style="margin-top: 50px; margin-bottom: 30px">Auctions Available</h1>
+
+<div class="row">
+  {{#each auctions as |auction|}}
+    {{auction-card auctionId=auction.id auctionDescription=auction.item}}
+  {{/each}}
+</div>

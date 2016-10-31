@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('view-auction', { path: 'view-auction/:auction_id' });
   });
 
+  this.route('auctions-grid');
 });
 
 export default Router;
