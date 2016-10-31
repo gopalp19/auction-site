@@ -4,6 +4,16 @@ export default Ember.Mixin.create({
 
   ajax: Ember.inject.service(),
 
+  submitNewUser: function(newUserInfo){
+    var deferred = this.get('ajax').request('http://localhost:4200/addNewUser', {
+        method: 'POST',
+        data: {
+          "newUserInfo": newUserInfo
+        }
+    });
+    return deferred;
+  },
+
   getAuctionInfo: function(auctionId){
     var deferred = this.get('ajax').request('https://jsonplaceholder.typicode.com/posts/1', {
       method: 'GET',

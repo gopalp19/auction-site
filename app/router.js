@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('user', function() {
     this.route('create-user');
     this.route('sign-in');
+    this.route('create-user-successful');
   });
 
   this.route('auction', function() {

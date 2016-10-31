@@ -15,6 +15,13 @@
       {{input type="password" value=userPassword placeholder="Password" class="form-control"}}
     </div>
 
+
+    {{#if isErrorsVisible}}
+      <div class="alert alert-danger" role="alert">
+        <strong>Error!</strong> Invalid credentials, please try again.
+      </div><br>
+    {{/if}}
+
     <button style="margin-top: 10px;" type="submit" class="btn btn-primary" {{action "logInHandler"}}>Log in</button>
   </form>
 {{/if}}

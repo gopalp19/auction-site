@@ -10,6 +10,8 @@ export default Ember.Controller.extend({
 
   store: Ember.inject.service(),
 
+  isErrorsVisible: false,
+
   actions: {
 
     logInHandler: function(){
@@ -18,10 +20,10 @@ export default Ember.Controller.extend({
 
       //const { login, password } = this.getProperties('login', 'password');
       this.get('session').authenticate('authenticator:custom', this.userId, this.userPassword).then(function(data){
-        self.get('store');
-        console.log('Success! Click the top link!');
+        console.log('Logged in');
       }, function(err){
-        console.log('Error obtaining token: ' + err.responseText);
+        console.log('Login failure');
+        self.set('isErrorsVisible', true);
       });
     },
 
