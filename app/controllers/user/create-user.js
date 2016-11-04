@@ -12,25 +12,31 @@ export default Ember.Controller.extend(serverReq, {
   canBuy: false,
   canSell: false,
 
+  errorMessage: "",
+
   actions: {
 
-    submitUserForm: function(data){
+    submitUserForm: function(){
       var self = this;
 
       var newUser ={
-        "fullName": this.get('fullName'),
-        "userId": this.get('userId'),
-        "userPassword": this.get('userPassword'),
-        "emailAddress": this.get('emailAddress'),
+        "username": this.get('userId'),
+        "password": this.get('userPassword'),
+        "firstName": this.get('fullName'),
+        "lastName": "",
+        "email": this.get('emailAddress'),
+        "shipFrom": "",
+        "shipTo": "",
+        "billTo": "",
         "canBuy": this.get('canBuy'),
         "canSell": this.get('canSell')
-      }
+      };
 
       this.submitNewUser(newUser).then(function(response){
         if(response.isSuccessful){
           self.transitionToRoute('user.create-user-successful');
         }else{
-
+          self.set('errorMessage', response.errorMessage);
         }
 
       });

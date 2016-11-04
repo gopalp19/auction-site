@@ -32,4 +32,10 @@
 
     <button {{action "submitUserForm"}} style="margin-top: 10px;" type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+  {{#if errorMessage}}
+    <br><div class="alert alert-danger" role="alert">
+      <strong>Error! </strong>{{errorMessage}}
+    </div><br>
+  {{/if}}
 {{/if}}

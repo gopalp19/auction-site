@@ -5,11 +5,14 @@ export default Ember.Mixin.create({
   ajax: Ember.inject.service(),
 
   submitNewUser: function(newUserInfo){
-    var deferred = this.get('ajax').request('http://localhost:4200/addNewUser', {
+    var data = JSON.stringify(newUserInfo);
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/addUser', {
         method: 'POST',
-        data: {
-          "newUserInfo": newUserInfo
-        }
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: data
     });
     return deferred;
   },

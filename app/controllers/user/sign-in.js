@@ -10,20 +10,22 @@ export default Ember.Controller.extend({
 
   store: Ember.inject.service(),
 
-  isErrorsVisible: false,
+  errorMessage: "",
 
   actions: {
 
     logInHandler: function(){
       var self = this;
       console.log("user info: " + this.userId + " " + this.userPassword);
+      this.set('errorMessage', "");
 
       //const { login, password } = this.getProperties('login', 'password');
       this.get('session').authenticate('authenticator:custom', this.userId, this.userPassword).then(function(data){
         console.log('Logged in');
       }, function(err){
+        var response = JSON.parse(err);
         console.log('Login failure');
-        self.set('isErrorsVisible', true);
+        self.set('errorMessage', response.errorMessage);
       });
     },
 
