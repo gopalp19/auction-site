@@ -6,7 +6,8 @@ export default Ember.Mixin.create({
 
   submitNewUser: function(newUserInfo){
     var data = JSON.stringify(newUserInfo);
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/addUser', {
+    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/addUser', {
+    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/addUser', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',

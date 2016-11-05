@@ -4,7 +4,8 @@ export default Ember.Route.extend({
 
   resetController: function(controller, isExiting, transition) {
     if (isExiting) {
-      controller.set('fullName', "");
+      controller.set('firstName', "");
+      controller.set('lastName', "");
       controller.set('userId', "");
       controller.set('userPassword', "");
       controller.set('emailAddress', "");

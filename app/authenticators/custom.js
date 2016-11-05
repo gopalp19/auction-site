@@ -16,7 +16,8 @@ export default Base.extend({
   authenticate: function(userId, password) {
     return new Ember.RSVP.Promise(function (resolve, reject) {
       Ember.$.ajax({
-        url: 'http://localhost:8080/testRest/users/login',
+        url: 'http://ec2-54-88-29-105.compute-1.amazonaws.com/users/login',
+        //url: 'http://localhost:8080/testRest/users/login',
         type: 'POST',
         contentType : 'application/json',
         dataType : 'json',

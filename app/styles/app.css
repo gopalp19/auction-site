@@ -1,0 +1,13 @@
+.registration-label{
+    font-weight: bold;
+}
+
+html *
+{
+   font-family: "Open Sans" !important;
+}
+
+body{
+  color: #1e3948 !important;
+  background-color: #f5f8fa !important;
+}

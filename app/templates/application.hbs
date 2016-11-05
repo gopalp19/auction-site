@@ -1,10 +1,25 @@
 <nav class="navbar navbar-full navbar-dark bg-primary">
   {{link-to 'Home' 'index' class="navbar-brand"}}
   <div class="nav navbar-nav">
-    {{link-to 'Sign Up' 'user.create-user' class="nav-item nav-link"}}
-    {{link-to 'Sign In' 'user.sign-in' class="nav-item nav-link"}}
-    {{link-to 'Auctions' 'auctions-grid' class="nav-item nav-link"}}
-    {{link-to 'View Auction' 'auction.view-auction' 1234 class="nav-item nav-link"}}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Users
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {{link-to 'Sign Up' 'user.create-user' class="dropdown-item"}}
+        {{link-to 'Sign In' 'user.sign-in' class="dropdown-item"}}
+      </div>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Auctions
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        {{link-to 'View Auctions' 'auctions-grid' class="dropdown-item"}}
+        {{link-to 'Create an Auction' 'auction.create-auction' class="dropdown-item"}}
+        {{link-to 'View Auction' 'auction.view-auction' 1234 class="dropdown-item"}}
+      </div>
+    </li>
   </div>
 </nav>
 

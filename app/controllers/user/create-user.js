@@ -5,7 +5,8 @@ export default Ember.Controller.extend(serverReq, {
 
   session: Ember.inject.service(),
 
-  fullName: "",
+  firstName: "",
+  lastName: "",
   userId: "",
   userPassword: "",
   emailAddress: "",
@@ -18,12 +19,13 @@ export default Ember.Controller.extend(serverReq, {
 
     submitUserForm: function(){
       var self = this;
+      this.set('errorMessage', "");
 
       var newUser ={
         "username": this.get('userId'),
         "password": this.get('userPassword'),
-        "firstName": this.get('fullName'),
-        "lastName": "",
+        "firstName": this.get('firstName'),
+        "lastName": this.get('lastName'),
         "email": this.get('emailAddress'),
         "shipFrom": "",
         "shipTo": "",
@@ -31,6 +33,11 @@ export default Ember.Controller.extend(serverReq, {
         "canBuy": this.get('canBuy'),
         "canSell": this.get('canSell')
       };
+
+      if(!this.get('canBuy') && !this.get('canSell')){
+        this.set('errorMessage', "Please select buy ability, or sell ability, or both.");
+        return;
+      }
 
       this.submitNewUser(newUser).then(function(response){
         if(response.isSuccessful){
