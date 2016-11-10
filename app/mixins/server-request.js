@@ -6,8 +6,22 @@ export default Ember.Mixin.create({
 
   submitNewUser: function(newUserInfo){
     var data = JSON.stringify(newUserInfo);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/addUser', {
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/addUser', {
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/addUser', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/addUser', {
+        method: 'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: data
+    });
+    return deferred;
+  },
+
+  submitNewAuction: function(newAuctionData){
+    var data = JSON.stringify(newAuctionData);
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuction', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuction', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -31,16 +45,16 @@ export default Ember.Mixin.create({
   },
 
   getAuctions: function(){
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions', {
-      //method: 'GET',
-      /*headers: {
-                'Access-Control-Allow-Origin': '*',
-                //'Access-Control-Request-Method': 'GET',
-                //'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-      }*/
-    });
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions');
     return deferred;
-  }
+  },
+
+  getAuctionItems: function(){
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getAuctionItems');
+    return deferred;
+  },
 
 
 });

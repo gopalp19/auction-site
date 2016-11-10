@@ -12,13 +12,48 @@
       <label class="registration-label">Auction Name</label>
       {{input value=auctionName placeholder="Auction Name" class="form-control" required="required"}}
     </div>
+
     <div class="form-group">
-      <label class="registration-label">Auction Description</label>
+      <label class="registration-label">Description</label>
       {{textarea value=auctionDescription placeholder="Description of auction" class="form-control" cols="80" rows="6"}}
     </div>
-    <p>
-      {{bs-datetimepicker date=auctionEndDate.date1 updateDate=(action (mut model.date2))}}
-    </p>
 
-    <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+      <label class="registration-label">Item</label>
+      {{ember-selectize content=predefinedItems optionValuePath="content.id" optionLabelPath="content.title" tabindex=6
+        selection=selectedItem placeholder="Select an item"}}
+      <label class="registration-label">Item not listed?
+        <button {{action "addNewItem"}} style="margin-top: 10px;" type="submit" class="btn btn-success">Add it!</button>
+      </label>
+
+      {{#if addItemEnabled}}
+        <div class="form-group">
+          <label class="registration-label">Item Name</label>
+          {{input value=itemName placeholder="Item Name" class="form-control"}}
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="form-group">
+      <label class="registration-label">Auction Start Time</label>
+      {{bs-datetimepicker date=auctionStartTime format='MM/DD/YYYY h:mm a' useCurrent=true minDate=minDate updateDate=(action "startTimeSelected")}}
+    </div>
+
+    <div class="form-group">
+      <label class="registration-label">Auction End Time</label>
+      {{bs-datetimepicker date=auctionEndTime useCurrent=false minDate=endMinDate updateDate=(action "endTimeSelected")}}
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label">
+      {{input type="checkbox" class="form-check-input" checked=canBuy}} can be bought</label><br>
+    </div>
+
+    <div class="form-group">
+      <label class="registration-label">Tags</label>
+      {{ember-selectize content=predefinedTags tabindex=6 selection=selectedTags multiple=true
+          placeholder="Select a tag" create-item=(action "tagCreate")}}
+    </div>
+
+    <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Create</button>
   </form>

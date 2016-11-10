@@ -1,13 +1,58 @@
 import Ember from 'ember';
+import serverReq from '../../mixins/server-request';
 
-export default Ember.Controller.extend({
+export default Ember.Controller.extend(serverReq, {
 
-  auctionEndDate: Ember.Object.create({
-    date1: moment(),
-    mindate: moment("2014-11-01"),
-    maxdate: moment("2015-12-01"),
-    disabled:true
-  }),
+  auctionName: "",
+  auctionDescription: "",
 
+  auctionStartTime: "",
+  auctionEndTime: "",
+  minDate: "",
+  endMinDate: "",
+
+  //predefinedItems: Ember.A(['Laptop', 'TV', 'Printer']),
+  predefinedItems: Ember.A([]),
+  predefinedTags: Ember.A(['Furniture', 'Kitchen', 'Outdoor']),
+
+  selectedTags: [],
+  selectedItem: "",
+  addItemEnabled: false,
+
+  actions:{
+
+    tagCreate: function(newTag){
+      this.get('predefinedTags').pushObject(newTag);
+      this.get('selectedTags').pushObject(newTag);
+    },
+
+    startTimeSelected: function(startDate){
+      console.log('test');
+      this.set('endMinDate', startDate.format("MM/DD/YYYY h:mm A"));
+      this.set('auctionStartTime', startDate);
+    },
+
+    endTimeSelected: function(endDate){
+      this.set('auctionEndTime', endDate);
+    },
+
+    addNewItem: function(){
+      this.set('addItemEnabled', true);
+    },
+
+    submitNewAuction: function(){
+      var newAuction ={
+        "auctionName": this.get('auctionName'),
+        "auctionDescription": this.get('auctionDescription'),
+        "auctionStartTime": this.get('auctionStartTime').toDate(),
+        "auctionEndTime": this.get('auctionEndTime').toDate(),
+
+        "auctionItemId": 123,
+      };
+
+      this.submitNewAuction(newAuction);
+    }
+
+  }
 
 });
