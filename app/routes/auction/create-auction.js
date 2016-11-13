@@ -10,11 +10,17 @@ export default Ember.Route.extend(serverReq, {
 
     var signedIn = this.get('session').get('isAuthenticated');
     if(!signedIn){
-      //TODO: redirect
+      this.transitionTo('error').then(function(route){
+        console.log('test');
+        route.controller.set('errorReason', "User not signed in!");
+      });
     }else{
       var user = this.get('session').get('data').authenticated.userData;
       if(!user.canBuy){
-        //TODO:redirect
+        this.transitionTo('error').then(function(route){
+          console.log('test');
+          route.controller.set('errorReason', "User not entitled to sell auctions!");
+        });
       }
     }
 
@@ -39,6 +45,12 @@ export default Ember.Route.extend(serverReq, {
 
       controller.set('auctionName', "");
       controller.set('auctionDescription', "");
+    }
+  },
+
+  actions:{
+    renderSuccessTemplate: function(){
+      this.render('auction.create-auction-success');
     }
   }
 

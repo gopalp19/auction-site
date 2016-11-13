@@ -8,6 +8,7 @@
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
         {{link-to 'Sign Up' 'user.create-user' class="dropdown-item"}}
         {{link-to 'Sign In' 'user.sign-in' class="dropdown-item"}}
+        {{#if session.isAuthenticated}}{{link-to 'View Account' 'user.view-user' class="dropdown-item"}}{{/if}}
       </div>
     </li>
     <li class="nav-item dropdown">

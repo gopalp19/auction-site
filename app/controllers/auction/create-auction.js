@@ -3,6 +3,8 @@ import serverReq from '../../mixins/server-request';
 
 export default Ember.Controller.extend(serverReq, {
 
+  session: Ember.inject.service(),
+
   auctionName: "",
   auctionDescription: "",
 
@@ -41,16 +43,22 @@ export default Ember.Controller.extend(serverReq, {
     },
 
     submitNewAuction: function(){
+      var self = this;
+      var user = this.get('session').get('data').authenticated.userData;
+
       var newAuction ={
         "auctionName": this.get('auctionName'),
         "auctionDescription": this.get('auctionDescription'),
         "auctionStartTime": this.get('auctionStartTime').toDate(),
         "auctionEndTime": this.get('auctionEndTime').toDate(),
-
-        "auctionItemId": 123,
+        "seller": user.username,
+        "auctionBuyNow": false, //TODO: remove hardcoding
+        "auctionItemId": this.get('selectedItem').id,
       };
 
-      this.submitNewAuction(newAuction);
+      this.submitNewAuction(newAuction).then(function(response){
+        self.send('renderSuccessTemplate');
+      });
     }
 
   }
