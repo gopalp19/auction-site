@@ -46,7 +46,11 @@ export default Ember.Controller.extend(serverReq, {
 
       this.submitNewUser(newUser).then(function(response){
         if(response.isSuccessful){
-          self.transitionToRoute('user.create-user-successful');
+          //self.transitionToRoute('user.create-user-successful');
+          self.transitionToRoute('user.create-user-successful').then(function(route){
+            route.controller.set('created', true);
+          });
+
         }else{
           self.set('errorMessage', response.errorMessage);
         }

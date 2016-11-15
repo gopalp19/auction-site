@@ -15,6 +15,13 @@ export default Ember.Route.extend(serverReq, {
       self.controllerFor(self.routeName).set('userData', response);
     });
 
+  },
+
+  resetController: function(controller, isExiting, transition) {
+    if (isExiting) {
+      controller.set('updateLabel', "Update");
+      controller.set('readonly', true);
+    }
   }
 
 });

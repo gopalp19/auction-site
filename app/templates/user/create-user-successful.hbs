@@ -1,3 +1,9 @@
 <h1 style="margin-top: 50px; margin-bottom: 30px">Congratulations!</h1>
 
-<h3>User successfully created! Please {{#link-to "user.sign-in"}}sign in{{/link-to}}</h3>
+{{#if created}}
+  <h3>User successfully created! Please {{#link-to "user.sign-in"}}sign in{{/link-to}}</h3>
+{{/if}}
+
+{{#if updated}}
+  <h3>User successfully updated!</h3>
+{{/if}}

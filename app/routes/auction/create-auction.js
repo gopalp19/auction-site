@@ -16,7 +16,7 @@ export default Ember.Route.extend(serverReq, {
       });
     }else{
       var user = this.get('session').get('data').authenticated.userData;
-      if(!user.canBuy){
+      if(!user.canSell){
         this.transitionTo('error').then(function(route){
           console.log('test');
           route.controller.set('errorReason', "User not entitled to sell auctions!");

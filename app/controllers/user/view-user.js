@@ -12,12 +12,20 @@ export default Ember.Controller.extend(serverReq, {
 
   actions:{
     updateUser: function(){
+      var self = this;
+
       if(this.get('updateLabel') == "Update"){
         this.set('updateLabel', "Save");
         this.set('readonly', false);
       }else{
         var updatedUser = this.get('userData');
-        this.updateCurrentUser(updatedUser);
+        this.updateCurrentUser(updatedUser).then(function(response){
+
+          self.transitionToRoute('user.create-user-successful').then(function(route){
+            route.controller.set('updated', true);
+          });
+
+        });
       }
     }
   }
