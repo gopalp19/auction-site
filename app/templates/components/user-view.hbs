@@ -1,0 +1,37 @@
+<div class="form-group">
+  <label class="registration-label">First Name</label>
+  {{input value=userData.firstName placeholder="First name" class="form-control" required="required" readonly=readonly}}
+</div>
+<div class="form-group">
+  <label class="registration-label">Last Name</label>
+  {{input value=userData.lastName placeholder="Last name" class="form-control" required="required" readonly=readonly}}
+</div>
+<div class="form-group">
+  <label class="registration-label">User Name</label>
+  {{input value=userData.username placeholder="User Name" class="form-control" readonly=specialReadonly}}
+</div>
+<div class="form-group">
+  <label class="registration-label">Password</label>
+  {{input value=userData.password type="password" placeholder="Password" class="form-control" readonly=readonly}}
+</div>
+
+<div class="form-group">
+  <label class="registration-label">Email address</label>
+  {{input value=userData.email type="email" placeholder="Username" class="form-control" readonly=readonly}}
+</div>
+
+<div class="form-group">
+  <label class="registration-label">Shipping address</label>
+  {{input value=userData.streetAddress placeholder="Street Address" class="form-control" readonly=readonly}}
+  {{input value=userData.apartmentNumber placeholder="Apartment, Suite, Bldg. (Optional)" class="form-control" readonly=readonly}}
+  {{input value=userData.zipCode placeholder="Zip Code" class="form-control" readonly=readonly}}
+  <label>Chicago, IL</label>
+  <label>United States</label>
+</div>
+
+<div class="form-check">
+  <label class="form-check-label">
+  {{input type="checkbox" class="form-check-input" checked=userData.canBuy readonly=readonly}} Ability to buy</label><br>
+  <label class="form-check-label">
+  {{input type="checkbox" class="form-check-input" checked=userData.canSell readonly=readonly}} Ability to sell</label>
+</div>

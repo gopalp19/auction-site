@@ -4,13 +4,18 @@ export default Ember.Route.extend({
 
   resetController: function(controller, isExiting, transition) {
     if (isExiting) {
-      controller.set('firstName', "");
-      controller.set('lastName', "");
-      controller.set('userId', "");
-      controller.set('userPassword', "");
-      controller.set('emailAddress', "");
-      controller.set('canBuy', false);
-      controller.set('canSell', false);
+
+      var userData = {
+        firstName: "",
+        lastName: "",
+        username: "",
+        password: "",
+        email: "",
+        canBuy: false,
+        canSell: false
+      };
+      
+      controller.set('userData', userData);
       controller.set('errorMessage', "");
     }
   }

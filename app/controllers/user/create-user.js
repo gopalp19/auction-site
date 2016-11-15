@@ -5,15 +5,17 @@ export default Ember.Controller.extend(serverReq, {
 
   session: Ember.inject.service(),
 
-  firstName: "",
-  lastName: "",
-  userId: "",
-  userPassword: "",
-  emailAddress: "",
-  canBuy: false,
-  canSell: false,
-
   errorMessage: "",
+
+  userData:{
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    email: "",
+    canBuy: false,
+    canSell: false
+  },
 
   actions: {
 
@@ -21,20 +23,23 @@ export default Ember.Controller.extend(serverReq, {
       var self = this;
       this.set('errorMessage', "");
 
+      var userData = this.get('userData');
+      var shipFrom = userData.streetAddress + " " + userData.apartmentNumber + " " + userData.zipCode + " Chicago, IL United States";
+
       var newUser ={
-        "username": this.get('userId'),
-        "password": this.get('userPassword'),
-        "firstName": this.get('firstName'),
-        "lastName": this.get('lastName'),
-        "email": this.get('emailAddress'),
-        "shipFrom": "",
-        "shipTo": "",
-        "billTo": "",
-        "canBuy": this.get('canBuy'),
-        "canSell": this.get('canSell')
+        "username": userData.username,
+        "password": userData.password,
+        "firstName": userData.firstName,
+        "lastName": userData.lastName,
+        "email": userData.email,
+        "shipFrom": shipFrom,
+        "shipTo": shipFrom,
+        "billTo": shipFrom,
+        "canBuy": userData.canBuy,
+        "canSell": userData.canSell
       };
 
-      if(!this.get('canBuy') && !this.get('canSell')){
+      if(!userData.canBuy && !userData.canSell){
         this.set('errorMessage', "Please select buy ability, or sell ability, or both.");
         return;
       }

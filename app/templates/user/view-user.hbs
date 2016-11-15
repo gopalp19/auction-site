@@ -1,1 +1,5 @@
-{{outlet}}
+<h1 class="roboto" style="margin-top: 50px; margin-bottom: 30px">Your Account</h1>
+
+{{user-view userData=userData readonly=readonly specialReadonly=specialReadonly}}
+
+<button {{action "updateUser"}} style="margin-top: 10px;" type="submit" class="btn btn-primary">{{updateLabel}}</button>
