@@ -1,0 +1,24 @@
+<h1 class="roboto" style="margin-top: 50px; margin-bottom: 30px">Categories</h1>
+
+<div class="alert alert-success" role="alert">
+  <strong>Note!</strong> Deleting category will remove tag from associated auctions
+</div>
+
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Category Name</th>
+      <th>Delete Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each auctionCategories as |category index|}}
+      <tr>
+        <th scope="row">{{index}}</th>
+        <td>{{category.categoryName}}</td>
+        <td><button {{action "deleteCategory" index}} style="margin-top: 10px;" type="submit" class="btn btn-danger">Delete</button></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

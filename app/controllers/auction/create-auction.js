@@ -15,7 +15,8 @@ export default Ember.Controller.extend(serverReq, {
 
   //predefinedItems: Ember.A(['Laptop', 'TV', 'Printer']),
   predefinedItems: Ember.A([]),
-  predefinedTags: Ember.A(['Furniture', 'Kitchen', 'Outdoor']),
+  //predefinedTags: Ember.A(['Furniture', 'Kitchen', 'Outdoor']),
+  predefinedTags: Ember.A([]),
 
   selectedTags: [],
   selectedItem: "",
@@ -56,7 +57,12 @@ export default Ember.Controller.extend(serverReq, {
         "auctionItemId": this.get('selectedItem').id,
       };
 
-      this.submitNewAuction(newAuction).then(function(response){
+      var auctionData = {
+        "auction": newAuction,
+        "selectedCategories": this.get('selectedTags'),
+      }
+
+      this.submitNewAuction(auctionData).then(function(response){
         self.send('renderSuccessTemplate');
       });
     }

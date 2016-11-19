@@ -24,8 +24,9 @@ export default Ember.Route.extend(serverReq, {
       }
     }
 
-    this.getAuctionItems().then(function(response){
-      self.controllerFor(self.routeName).get('predefinedItems').pushObjects(response);
+    this.getCreateAuctionData().then(function(response){
+      self.controllerFor(self.routeName).get('predefinedItems').pushObjects(response.auctionItems);
+      self.controllerFor(self.routeName).get('predefinedTags').pushObjects(response.categoryList);
     });
 
     this.controllerFor(this.routeName).set('minDate', moment().format("MM/DD/YYYY h:mm a"));
