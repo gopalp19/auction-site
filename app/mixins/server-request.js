@@ -82,6 +82,33 @@ export default Ember.Mixin.create({
         data: data
     });
     return deferred;
+  },
+
+  getAllUsers: function(){
+    var requestURL = 'http://ec2-54-88-29-105.compute-1.amazonaws.com/users';
+
+    var deferred = this.get('ajax').request(requestURL, {
+        method: 'GET',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    });
+    return deferred;
+  },
+
+  deleteUser: function(userData){
+    var data = JSON.stringify(userData);
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/deleteUser', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/deleteUser', {
+        method: 'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: data
+    });
+    return deferred;
   }
 
 

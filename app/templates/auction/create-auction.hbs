@@ -33,6 +33,11 @@
         </div>
       {{/if}}
     </div>
+    <div class="form-group">
+      <label class="registration-label">Item Category</label>
+      {{ember-selectize content=predefinedTags tabindex=6 selection=selectedTags multiple=true
+          placeholder="Select a category" create-item=(action "tagCreate")}}
+    </div>
 
     <div class="form-group">
       <label class="registration-label">Auction Start Time</label>
@@ -47,12 +52,6 @@
     <div class="form-check">
       <label class="form-check-label">
       {{input type="checkbox" class="form-check-input" checked=canBuy}} can be bought</label><br>
-    </div>
-
-    <div class="form-group">
-      <label class="registration-label">Tags</label>
-      {{ember-selectize content=predefinedTags tabindex=6 selection=selectedTags multiple=true
-          placeholder="Select a tag" create-item=(action "tagCreate")}}
     </div>
 
     <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Create</button>

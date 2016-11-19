@@ -21,6 +21,17 @@
         {{link-to 'View Auction' 'auction.view-auction' 1234 class="dropdown-item"}}
       </div>
     </li>
+
+    {{#if userIsAdmin}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          {{link-to 'View Users' 'admin.users' class="dropdown-item"}}
+        </div>
+      </li>
+    {{/if}}
   </div>
 </nav>
 

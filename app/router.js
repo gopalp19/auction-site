@@ -21,6 +21,10 @@ Router.map(function() {
 
   this.route('auctions-grid');
   this.route('error');
+
+  this.route('admin', function() {
+    this.route('users');
+  });
 });
 
 export default Router;
