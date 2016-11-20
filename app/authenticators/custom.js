@@ -31,6 +31,7 @@ export default Base.extend({
   },
 
   invalidate: function(data) {
+    window.location.reload(true);
     return new Ember.RSVP.resolve(true);
   }
 

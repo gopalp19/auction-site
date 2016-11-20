@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     var signedIn = this.get('session').get('isAuthenticated');
     if(signedIn){
         var user = this.get('session').get('data').authenticated.userData;
-        if(user.canSell){
+        if(user.isAdmin){
           return true;
         }
     }

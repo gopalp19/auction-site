@@ -20,9 +20,9 @@ export default Ember.Mixin.create({
 
   submitNewAuction: function(newAuctionData){
     var data = JSON.stringify(newAuctionData);
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuction', {
+    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuction', {
 
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuction', {
+    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuction', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -46,8 +46,8 @@ export default Ember.Mixin.create({
   },
 
   getAuctions: function(){
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions');
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions');
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions');
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions');
     return deferred;
   },
 
@@ -99,8 +99,8 @@ export default Ember.Mixin.create({
   },
 
   getCategories: function(){
-    //var requestURL = 'http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getCategories';
-    var requestURL = 'http://localhost:8080/testRest/auctions/getCategories';
+    var requestURL = 'http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getCategories';
+    //var requestURL = 'http://localhost:8080/testRest/auctions/getCategories';
 
     var deferred = this.get('ajax').request(requestURL, {
         method: 'GET',
@@ -128,8 +128,8 @@ export default Ember.Mixin.create({
 
   deleteCategory: function(category){
     var data = JSON.stringify(category);
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/deleteCategory', {
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/deleteCategory', {
+    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/deleteCategory', {
+    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/deleteCategory', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -141,8 +141,8 @@ export default Ember.Mixin.create({
   },
 
   getCreateAuctionData: function(){
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getCreateAuctionData');
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getCreateAuctionData');
+    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getCreateAuctionData');
+    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getCreateAuctionData');
     return deferred;
   },
 

@@ -22,6 +22,7 @@ export default Ember.Controller.extend({
       //const { login, password } = this.getProperties('login', 'password');
       this.get('session').authenticate('authenticator:custom', this.userId, this.userPassword).then(function(data){
         console.log('Logged in');
+        window.location.reload(true);
       }, function(err){
         var response = JSON.parse(err);
         console.log('Login failure');
