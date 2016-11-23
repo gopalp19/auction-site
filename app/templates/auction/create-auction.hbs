@@ -27,10 +27,21 @@
       </label>
 
       {{#if addItemEnabled}}
-        <div class="form-group">
+        <div class="form-group jumbotron" style="padding: 1rem 2rem;">
           <label class="registration-label">Item Name</label>
           {{input value=itemName placeholder="Item Name" class="form-control"}}
+          <label class="registration-label">Item Description</label>
+          {{input value=itemDescription placeholder="Item Description" class="form-control"}}
+          <button {{action "saveNewItem"}} style="margin-top: 10px;" type="submit" class="btn btn-success">Save</button>
+
+          {{#if itemAddMessage}}
+            <div class="alert alert-warning" role="alert">
+              <strong>Note: </strong>{{itemAddMessage}}
+            </div>
+          {{/if}}
+
         </div>
+
       {{/if}}
     </div>
     <div class="form-group">

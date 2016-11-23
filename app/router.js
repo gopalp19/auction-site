@@ -26,6 +26,7 @@ Router.map(function() {
     this.route('users');
     this.route('categories');
   });
+  this.route('auctions-search');
 });
 
 export default Router;

@@ -8,6 +8,10 @@ export default Ember.Controller.extend(serverReq, {
   auctionName: "",
   auctionDescription: "",
 
+  itemName: "",
+  itemDescription: "",
+  itemAddMessage: "",
+
   auctionStartTime: "",
   auctionEndTime: "",
   minDate: "",
@@ -21,6 +25,15 @@ export default Ember.Controller.extend(serverReq, {
   selectedTags: [],
   selectedItem: "",
   addItemEnabled: false,
+
+  updateItemsList: function(){
+    var self = this;
+
+    this.getAuctionItems().then(function(response){
+      self.get('predefinedItems').clear();
+      self.get('predefinedItems').pushObjects(response);
+    });
+  },
 
   actions:{
 
@@ -41,6 +54,28 @@ export default Ember.Controller.extend(serverReq, {
 
     addNewItem: function(){
       this.set('addItemEnabled', true);
+    },
+
+    saveNewItem: function(){
+      var self = this;
+
+      var newAuctionItem ={
+        "title": this.get('itemName'),
+        "description": this.get('itemDescription')
+      };
+
+      this.addAuctionItem(newAuctionItem).then(function(response){
+        if(response.isSuccessful){
+          console.log("success");
+          self.set("itemAddMessage", response.responseMessage);
+          self.set("itemName", "");
+          self.set("itemDescription", "");
+
+          self.updateItemsList();
+        }else{
+          self.set("itemAddMessage", response.responseMessage);
+        }
+      });
     },
 
     submitNewAuction: function(){

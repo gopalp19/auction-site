@@ -6,4 +6,8 @@
 
 {{#if updated}}
   <h3>User successfully updated!</h3>
+
+  <div class="alert alert-warning" role="alert">
+    <strong>Warning!</strong> To see changes, log out and log back in {{#link-to "user.sign-in"}}sign in{{/link-to}}
+  </div>
 {{/if}}

@@ -20,9 +20,9 @@ export default Ember.Mixin.create({
 
   submitNewAuction: function(newAuctionData){
     var data = JSON.stringify(newAuctionData);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuction', {
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuction', {
 
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuction', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuction', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -51,9 +51,30 @@ export default Ember.Mixin.create({
     return deferred;
   },
 
+  getOpenAuctions: function(){
+    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getOpenAuctions');
+    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getOpenAuctions');
+    return deferred;
+  },
+
   getAuctionItems: function(){
     var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getAuctionItems');
     //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getAuctionItems');
+    return deferred;
+  },
+
+  addAuctionItem: function(newAuctionItem){
+    var data = JSON.stringify(newAuctionItem);
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuctionItem', {
+
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuctionItem', {
+        method: 'POST',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        data: data
+    });
     return deferred;
   },
 
@@ -114,8 +135,8 @@ export default Ember.Mixin.create({
 
   deleteUser: function(userData){
     var data = JSON.stringify(userData);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/deleteUser', {
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/deleteUser', {
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/deleteUser', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/deleteUser', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',

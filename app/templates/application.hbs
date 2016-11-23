@@ -9,6 +9,7 @@
         {{link-to 'Sign Up' 'user.create-user' class="dropdown-item"}}
         {{link-to 'Sign In' 'user.sign-in' class="dropdown-item"}}
         {{#if session.isAuthenticated}}{{link-to 'View Account' 'user.view-user' class="dropdown-item"}}{{/if}}
+        {{#if session.isAuthenticated}}{{link-to 'View Cart' 'user.view-user' class="dropdown-item"}}{{/if}}
       </div>
     </li>
     <li class="nav-item dropdown">
@@ -16,9 +17,9 @@
         Auctions
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        {{link-to 'View Auctions' 'auctions-grid' class="dropdown-item"}}
+        {{link-to 'View Open Auctions' 'auctions-grid' class="dropdown-item"}}
+        {{link-to 'Search Auctions' 'auctions-search' class="dropdown-item"}}
         {{link-to 'Create an Auction' 'auction.create-auction' class="dropdown-item"}}
-        {{link-to 'View Auction' 'auction.view-auction' 1234 class="dropdown-item"}}
       </div>
     </li>
 
