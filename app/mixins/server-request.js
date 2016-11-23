@@ -167,5 +167,20 @@ export default Ember.Mixin.create({
     return deferred;
   },
 
+  submitBid: function(bidData) {
+    var data = JSON.stringify(bidData);
+    console.log(data);
+    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/bids/submitBid', {
+    var deferred = this.get('ajax').request('http://localhost:8080/testRest/bids/submitBid', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: data
+    });
+    return deferred;
+  }
+
 
 });
