@@ -8,14 +8,15 @@ export default Ember.Route.extend(serverReq, {
   model: function(){
     var self = this;
 
-    //var auctionId = params.auction_id;
-    var deferred = this.getOpenAuctions();
-    deferred.then(function(data){
-      //self.controller;
-      //self.controller(auctions);
-      self.controllerFor(self.routeName).set('auctions', data);
-    });
-
+    if(!self.controllerFor(self.routeName).get("isSearching")) {
+      //var auctionId = params.auction_id;
+      var deferred = this.getOpenAuctions();
+      deferred.then(function (data) {
+        //self.controller;
+        //self.controller(auctions);
+        self.controllerFor(self.routeName).set('auctions', data);
+      });
+    }
     return;
   }
 

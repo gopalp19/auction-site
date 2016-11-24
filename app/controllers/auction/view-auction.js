@@ -33,12 +33,12 @@ export default Ember.Controller.extend(serverReq, {
         return;
       }
       var newBid ={
-        "username": user.username,
-        "amount": self.get('newBidAmount')
+        username: user.username,
+        amount: self.get('newBidAmount')
       };
       var bidData ={
-        "bid": newBid,
-        "auctionId": parseInt(self.get("auctionId"),10)
+        bid: newBid,
+        auctionId: parseInt(self.get("auctionId"),10)
       };
 
       self.submitBid(bidData).then(function(response){

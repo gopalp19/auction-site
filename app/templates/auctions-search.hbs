@@ -1,12 +1,17 @@
 <h1 style="margin-top: 50px; margin-bottom: 30px">Search Auctions</h1>
-
+{{#if errorMessage}}
+    <div class="alert alert-danger" role="alert">
+        <strong>Error! </strong>{{errorMessage}}
+    </div>
+{{/if}}
 <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Search by
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
 </div>
+<form {{action "searchKeyword" on="submit"}}>
+  <div class="form-group">
+      {{input value=keywordString class="form-control"}}
+  </div>
+    <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Search</button>
+</form>
