@@ -2,12 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
 
+  //baseURL: "http://ec2-54-88-29-105.compute-1.amazonaws.com/",
+  baseURL: "http://localhost:8080/testRest/",
+
   ajax: Ember.inject.service(),
 
   submitNewUser: function(newUserInfo){
     var data = JSON.stringify(newUserInfo);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/addUser', {
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/addUser', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'users/addUser', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -20,9 +22,7 @@ export default Ember.Mixin.create({
 
   submitNewAuction: function(newAuctionData){
     var data = JSON.stringify(newAuctionData);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuction', {
-
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuction', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/addAuction', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -46,28 +46,23 @@ export default Ember.Mixin.create({
   },
 
   getAuctions: function(){
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions');
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions');
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions');
     return deferred;
   },
 
   getOpenAuctions: function(){
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getOpenAuctions');
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getOpenAuctions');
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/getOpenAuctions');
     return deferred;
   },
 
   getAuctionItems: function(){
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getAuctionItems');
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getAuctionItems');
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/getAuctionItems');
     return deferred;
   },
 
   addAuctionItem: function(newAuctionItem){
     var data = JSON.stringify(newAuctionItem);
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/addAuctionItem', {
-
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/addAuctionItem', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/addAuctionItem', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -79,8 +74,7 @@ export default Ember.Mixin.create({
   },
 
   getUser: function(username){
-    var requestURL = 'http://ec2-54-88-29-105.compute-1.amazonaws.com/users/' + username;
-    //var requestURL = 'http://localhost:8080/testRest/users/' + username;
+    var requestURL = this.get('baseURL') + 'users/' + username;
 
     var deferred = this.get('ajax').request(requestURL, {
         method: 'GET',
@@ -94,8 +88,7 @@ export default Ember.Mixin.create({
 
   updateCurrentUser: function(updatedUserData){
     var data = JSON.stringify(updatedUserData);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/updateUser', {
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/updateUser', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'users/updateUser', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -107,7 +100,7 @@ export default Ember.Mixin.create({
   },
 
   getAllUsers: function(){
-    var requestURL = 'http://ec2-54-88-29-105.compute-1.amazonaws.com/users';
+    var requestURL = this.get('baseURL') + 'users';
 
     var deferred = this.get('ajax').request(requestURL, {
         method: 'GET',
@@ -120,8 +113,7 @@ export default Ember.Mixin.create({
   },
 
   getCategories: function(){
-    var requestURL = 'http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getCategories';
-    //var requestURL = 'http://localhost:8080/testRest/auctions/getCategories';
+    var requestURL = this.get('baseURL') + 'auctions/getCategories';
 
     var deferred = this.get('ajax').request(requestURL, {
         method: 'GET',
@@ -135,8 +127,7 @@ export default Ember.Mixin.create({
 
   deleteUser: function(userData){
     var data = JSON.stringify(userData);
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/users/deleteUser', {
-    var deferred = this.get('ajax').request('http://localhost:8080/testRest/users/deleteUser', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'users/deleteUser', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -149,8 +140,7 @@ export default Ember.Mixin.create({
 
   deleteCategory: function(category){
     var data = JSON.stringify(category);
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/deleteCategory', {
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/deleteCategory', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/deleteCategory', {
         method: 'POST',
         headers:{
           'Accept': 'application/json',
@@ -162,22 +152,34 @@ export default Ember.Mixin.create({
   },
 
   getCreateAuctionData: function(){
-    var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/getCreateAuctionData');
-    //var deferred = this.get('ajax').request('http://localhost:8080/testRest/auctions/getCreateAuctionData');
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/getCreateAuctionData');
     return deferred;
   },
 
   submitBid: function(bidData) {
     var data = JSON.stringify(bidData);
     console.log(data);
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/bids/submitBid', {
-    var deferred = this.get('ajax').request('http://localhost:8080/bids/submitBid', {
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'bids/submitBid', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       data: data
+
+    });
+    return deferred;
+  },
+
+  getAuctionsInCart: function(username){
+    var requestURL = this.get('baseURL') + 'auctions/getAuctionsInCart/' + username;
+
+    var deferred = this.get('ajax').request(requestURL, {
+        method: 'GET',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
     });
     return deferred;
   },
