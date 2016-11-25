@@ -34,14 +34,7 @@ export default Ember.Mixin.create({
   },
 
   getAuctionInfo: function(auctionId){
-    var deferred = this.get('ajax').request('https://jsonplaceholder.typicode.com/posts/1', {
-      method: 'GET',
-      headers: {
-                'Access-Control-Allow-Origin': '*',
-                //'Access-Control-Request-Method': 'GET',
-                //'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-      }
-    });
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/' + auctionId);
     return deferred;
   },
 
@@ -194,7 +187,25 @@ export default Ember.Mixin.create({
       }
     });
     return deferred;
-  }
+  },
+
+  buyAuction: function(buyData){
+      var data = JSON.stringify(buyData);
+      var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/buyAuction', {
+          method: 'POST',
+          headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: data
+      });
+      return deferred;
+  },
+
+  getBidInfo: function(bidId){
+    var deferred = this.get('ajax').request(this.get('baseURL') + 'bids/' + bidId);
+    return deferred;
+  },
 
 
 });

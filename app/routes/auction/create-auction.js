@@ -51,6 +51,9 @@ export default Ember.Route.extend(serverReq, {
       controller.set('itemDescription', "");
       controller.set('itemAddMessage', "");
 
+      controller.set('canBuy', false);
+      controller.set('buyNowPrice', "");
+
     }
   },
 

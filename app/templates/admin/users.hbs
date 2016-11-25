@@ -1,5 +1,11 @@
 <h1 class="roboto" style="margin-top: 50px; margin-bottom: 30px">Users</h1>
 
+{{#if errorMessage}}
+  <div class="alert alert-danger" role="alert">
+    <strong>Error! </strong>{{errorMessage}}
+  </div>
+{{/if}}
+
 <table class="table table-bordered table-hover">
   <thead class="thead-inverse">
     <tr>

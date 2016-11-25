@@ -26,5 +26,14 @@
         </div>
         <button type="submit" class="btn btn-primary" >Submit Bid</button>
     </form>
-</div>
 
+
+    {{#if auction.auctionBuyNow}}<br>
+      <div class="form-group jumbotron" style="padding: 1rem 2rem;">
+        <h3 style="margin-top: 30px; margin-bottom: 30px">Auction Available to Buy</h3>
+        <label class="registration-label">Buy Now Price: ${{auction.auctionBuyNowPrice}}</label><br>
+
+        <button type="submit" {{action "submitAuction"}} class="btn btn-primary">Buy Auction Item</button><br>
+      </div>
+    {{/if}}
+</div>

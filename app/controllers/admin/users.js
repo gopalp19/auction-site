@@ -5,9 +5,12 @@ export default Ember.Controller.extend(serverReq, {
 
   userAccounts: [],
 
+  errorMessage: "",
+
   actions: {
     deleteUser: function(index){
       var self = this;
+      this.set('errorMessage', "");
 
       var userData ={
         "username": this.get('userAccounts')[index].username
@@ -15,11 +18,9 @@ export default Ember.Controller.extend(serverReq, {
 
       this.deleteUser(userData).then(function(response){
         if(response.isSuccessful){
-          //good
           self.get('userAccounts').removeAt(index);
-
         }else{
-          //bad
+          self.set('errorMessage', response.errorMessage);
         }
       });
     }

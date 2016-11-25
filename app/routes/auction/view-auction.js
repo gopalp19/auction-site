@@ -15,6 +15,8 @@ export default Ember.Route.extend(serverReq, {
 
     self.getAuctionInfo(auctionId).then(function(data){
       console.log(data);
+      self.controllerFor(self.routeName).set("auction",data);
+
       self.controllerFor(self.routeName).set("auctionDescription",data.auctionDescription);
       self.controllerFor(self.routeName).set("auctionName",data.auctionName);
       self.controllerFor(self.routeName).set("auctionSeller",data.seller);
@@ -22,8 +24,8 @@ export default Ember.Route.extend(serverReq, {
       if(data.highBidId) {
         var bidDeferred = self.getBidInfo(data.highBidId);
         bidDeferred.then(function(data) {
-          self.controllerFor(self.routeName).set("highBidUser",data.username);
-          self.controllerFor(self.routeName).set("highBidAmount",data.amount);
+          self.controllerFor(self.routeName).set("highBidUser",data.bidUser);
+          self.controllerFor(self.routeName).set("highBidAmount",data.bidData.amount);
           self.controllerFor(self.routeName).set("auctionHasBid",true);
         });
       } else {

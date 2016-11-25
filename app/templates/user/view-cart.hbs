@@ -1,0 +1,27 @@
+<h1 class="roboto" style="margin-top: 50px; margin-bottom: 30px">My Cart</h1>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Auction Name</th>
+      <th>Sold By</th>
+      <th>Auction Item</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each auctions as |auction index|}}
+      <tr>
+        <td scope="row" >{{index}}</td>
+        <td>{{auction.auctionName}}</td>
+        <td>{{auction.auctionSeller}}</td>
+        <td>{{auction.auctionItem}}</td>
+        <td align="right">${{auction.auctionItemCost}}</td>
+      </tr>
+    {{/each}}
+    <tr>
+      <td colspan="5" align="right">Total: ${{cartTotal}}</td>
+    </tr>
+  </tbody>
+</table>

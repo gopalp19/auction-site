@@ -64,6 +64,10 @@
       <label class="form-check-label">
       {{input type="checkbox" class="form-check-input" checked=canBuy}} can be bought</label><br>
     </div>
+    {{#if canBuy}}
+      <label class="registration-label">Buy Now Price</label>
+      {{input value=buyNowPrice placeholder="Buy Now Price" class="form-control" required="required"}}
+    {{/if}}
 
     <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Create</button>
   </form>

@@ -15,6 +15,7 @@ export default Ember.Route.extend(serverReq, {
   resetController: function(controller, isExiting, transition) {
     if (isExiting) {
       controller.set('userAccounts', []);
+      controller.set('errorMessage', "");
     }
   }
 

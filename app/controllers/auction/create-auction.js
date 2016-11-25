@@ -26,6 +26,9 @@ export default Ember.Controller.extend(serverReq, {
   selectedItem: "",
   addItemEnabled: false,
 
+  canBuy: false,
+  buyNowPrice: "",
+
   updateItemsList: function(){
     var self = this;
 
@@ -82,13 +85,18 @@ export default Ember.Controller.extend(serverReq, {
       var self = this;
       var user = this.get('session').get('data').authenticated.userData;
 
+      if(!this.get('canBuy')){
+        Ember.set(this, 'buyNowPrice', "");
+      }
+
       var newAuction ={
         "auctionName": this.get('auctionName'),
         "auctionDescription": this.get('auctionDescription'),
         "auctionStartTime": this.get('auctionStartTime').toDate(),
         "auctionEndTime": this.get('auctionEndTime').toDate(),
         "seller": user.username,
-        "auctionBuyNow": false, //TODO: remove hardcoding
+        "auctionBuyNow": this.get('canBuy'),
+        "auctionBuyNowPrice": this.get('buyNowPrice'),
         "auctionItemId": this.get('selectedItem').id,
       };
 

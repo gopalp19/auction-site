@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('sign-in');
     this.route('create-user-successful');
     this.route('view-user');
+    this.route('view-cart');
   });
 
   this.route('auction', function() {
@@ -27,6 +28,7 @@ Router.map(function() {
     this.route('categories');
   });
   this.route('auctions-search');
+  this.route('success');
 });
 
 export default Router;
