@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
 
   baseURL: "http://ec2-54-88-29-105.compute-1.amazonaws.com/",
-  //baseURL: "http://localhost:8080/testRest/",
+  //baseURL: "http://localhost:8080/",
 
   ajax: Ember.inject.service(),
 
