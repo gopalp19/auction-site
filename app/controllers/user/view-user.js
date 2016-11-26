@@ -10,6 +10,8 @@ export default Ember.Controller.extend(serverReq, {
 
   updateLabel: "Update",
 
+  session: Ember.inject.service(),
+
   actions:{
     updateUser: function(){
       var self = this;
@@ -27,6 +29,28 @@ export default Ember.Controller.extend(serverReq, {
 
         });
       }
+    },
+
+    deleteUser: function(){
+      var self = this;
+
+      var user = this.get('session').get('data').authenticated.userData;
+
+      var userData ={
+        "username": user.username
+      };
+
+      this.deleteUser(userData).then(function(response){
+
+        if(response.isSuccessful){
+            self.get('session').invalidate();
+            self.transitionToRoute('success').then(function(route){
+              route.controller.set('message', "User Account has been succesfully deleted");
+            });
+        }else{
+
+        }
+      });
     }
   }
 

@@ -2,15 +2,14 @@
 <div class="col-sm-3">
   <div class="card">
     <div class="card-block">
-      <h4 class="card-title"><strong>{{auction.auctionName}}</strong></h4>
+      <h4 class="card-title card-title-truncate"><strong>{{auction.auctionName}}</strong></h4>
       <h4 class="card-title">Sold by <strong>{{auction.seller}}</strong></h4>
       <h6 class="card-subtitle text-muted">Auction time left: {{auctionTimeLeft}}</h6>
     </div>
     <img src="/assets/images/placeholder.png" alt="Card image" style="display:block; margin:auto;">
     <div class="card-block">
       <p class="card-text">{{auctionDescription}}</p>
-      {{link-to 'View' 'auction.view-auction' auction.id class="btn btn-primary" style="width:100px"}}
-      {{link-to 'Bid' 'auction.view-auction' auction.id class="btn btn-success" style="width:100px"}}
+      {{link-to 'View' 'auction.view-auction' auction.id class="btn btn-primary" style="width:150px"}}
     </div>
   </div>
 </div>

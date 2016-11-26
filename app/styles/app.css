@@ -2,6 +2,20 @@
     font-weight: bold;
 }
 
+.card-title-truncate{
+  width: 210px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-text-missing{
+  display: inline-block;
+  padding-top: .425rem;
+  padding-bottom: .425rem;
+  float: right;
+}
+
 html *
 {
    font-family: "Open Sans" !important;

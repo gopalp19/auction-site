@@ -35,6 +35,11 @@
       </li>
     {{/if}}
   </div>
+  {{#if session.isAuthenticated}}
+    <span class="navbar-text-missing">
+      Logged in as: {{username}}
+    </span>
+  {{/if}}
 </nav>
 
 <div class="container">

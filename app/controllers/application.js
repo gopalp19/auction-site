@@ -14,6 +14,16 @@ export default Ember.Controller.extend({
     }
 
     return false;
+  }),
+
+  username: Ember.computed(function(){
+    var signedIn = this.get('session').get('isAuthenticated');
+    if(signedIn){
+        var user = this.get('session').get('data').authenticated.userData;
+        return user.username;
+    }else{
+      return "";
+    }
   })
 
 });
