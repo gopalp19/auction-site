@@ -21,6 +21,7 @@ Router.map(function() {
   });
 
   this.route('auctions-grid');
+  this.route('auctions-grid',{path: '/:isSearching'});
   this.route('error');
 
   this.route('admin', function() {

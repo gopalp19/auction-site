@@ -4,14 +4,12 @@
         <strong>Error! </strong>{{errorMessage}}
     </div>
 {{/if}}
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Search by
-  </button>
-</div>
 <form {{action "searchKeyword" on="submit"}}>
   <div class="form-group">
-      {{input value=keywordString class="form-control"}}
+    {{ember-selectize content=predefinedItems required=true tabindex=6 selection=selectedItem placeholder="Search By"}}
+  </div>
+  <div class="form-group">
+    {{input value=keywordString class="form-control"}}
   </div>
     <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Search</button>
 </form>

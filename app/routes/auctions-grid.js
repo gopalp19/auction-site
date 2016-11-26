@@ -4,19 +4,21 @@ import serverReq from '../mixins/server-request';
 export default Ember.Route.extend(serverReq, {
 
   ajax: Ember.inject.service(),
+  isSearching: false,
 
-  model: function(){
+
+  model: function(param){
     var self = this;
-
-    if(!self.controllerFor(self.routeName).get("isSearching")) {
-      //var auctionId = params.auction_id;
+    if(param) {
+      console.log(param);
+      self.controllerFor(self.routeName).set('isSearching',param.isSearching);
+    }
+    if(!(self.controllerFor(self.routeName).get("isSearching"))) {
       var deferred = this.getOpenAuctions();
       deferred.then(function (data) {
-        //self.controller;
-        //self.controller(auctions);
         self.controllerFor(self.routeName).set('auctions', data);
       });
-    }
+    } else { console.log("we are searching");}
     return;
   }
 

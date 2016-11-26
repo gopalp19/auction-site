@@ -4,6 +4,7 @@ import serverReq from '../mixins/server-request';
 export default Ember.Controller.extend(serverReq, {
 
   errorMessage: "",
+  predefinedItems: Ember.A(['Keyword', 'Item']),
 
   actions:{
     searchKeyword: function(){
@@ -14,8 +15,7 @@ export default Ember.Controller.extend(serverReq, {
 
       self.searchAuctionsByString(keywordString).then(function(response) {
         if(response) {
-          self.transitionToRoute('auctions-grid').then(function(route){
-            route.controller.set('isSearching', true);
+          self.transitionToRoute('auctions-grid',{isSearching:true}).then(function(route){
             route.controller.set('headerText',"Search Results");
             route.controller.set('auctions',response);
           });
