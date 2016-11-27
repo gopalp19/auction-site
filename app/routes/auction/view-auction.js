@@ -36,6 +36,12 @@ export default Ember.Route.extend(serverReq, {
     return;
   },
 
+  resetController: function(controller, isExiting, transition) {
+    if (isExiting) {
+      controller.set('errorMessage', "");
+    }
+  },
+
   actions: {
     renderSuccessTemplate: function() {
       var self = this;

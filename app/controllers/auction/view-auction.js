@@ -37,6 +37,11 @@ export default Ember.Controller.extend(serverReq, {
         self.set("errorMessage","You must be logged in to bid.");
         return;
       }
+      if(user.username == this.get("auctionSeller")) {
+        self.set("errorMessage","You cannot bid on your own auction!");
+        return;
+      }
+
       var newBid ={
         username: user.username,
         amount: self.get('newBidAmount')
@@ -47,10 +52,12 @@ export default Ember.Controller.extend(serverReq, {
       };
 
       self.submitBid(bidData).then(function(response){
-        if(response.get("isSuccessful")) {
-          self.send('renderSuccessTemplate');
-        }
-        else {
+        if(response.isSuccessful){
+          //self.send('renderSuccessTemplate');
+          self.transitionToRoute('success').then(function(route){
+            route.controller.set('message', "Congrats! Auction bid has been placed!");
+          });
+        }else {
           self.send('renderFailureTemplate');
         }
       });
