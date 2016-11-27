@@ -37,7 +37,7 @@ export default Ember.Controller.extend(serverReq, {
         self.set("errorMessage","You must be logged in to bid.");
         return;
       }
-      if(user.username == this.get("auctionSeller")) {
+      if(user.username === this.get("auctionSeller")) {
         self.set("errorMessage","You cannot bid on your own auction!");
         return;
       }

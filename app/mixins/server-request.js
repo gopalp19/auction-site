@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Mixin.create({
 
-  baseURL: "http://ec2-54-88-29-105.compute-1.amazonaws.com/",
-  //baseURL: "http://localhost:8080/",
+  //baseURL: "http://ec2-54-88-29-105.compute-1.amazonaws.com/",
+  baseURL: "http://localhost:8080/",
 
   ajax: Ember.inject.service(),
 
@@ -178,8 +178,8 @@ export default Ember.Mixin.create({
   },
 
   searchAuctionsByString: function(searchString){
-    //var deferred = this.get('ajax').request('http://ec2-54-88-29-105.compute-1.amazonaws.com/auctions/searchAuctions/'+searchString, {
-    var deferred = this.get('ajax').request('http://localhost:8080/auctions/searchAuctions/'+searchString, {
+    var requestURL = this.get('baseURL') + 'auctions/searchAuctions/' + searchString;
+    var deferred = this.get('ajax').request(requestURL, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -218,7 +218,21 @@ export default Ember.Mixin.create({
           }
       });
       return deferred;
-  }
+  },
+
+  getAuctionsForIds: function(ids) {
+    var data = JSON.stringify(ids);
+    var requestURL = this.get('baseURL') + 'auctions/batchFind';
+    var deferred = this.get('ajax').request(requestURL, {
+      method: 'POST',
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: data
+    });
+    return deferred;
+  },
 
 
 });

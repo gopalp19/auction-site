@@ -1,0 +1,7 @@
+<h1 style="margin-top: 50px; margin-bottom: 30px">{{headerText}}</h1>
+
+<div class="row">
+  {{#each auctions as |auction|}}
+    {{auction-card auction=auction}}
+  {{/each}}
+</div>

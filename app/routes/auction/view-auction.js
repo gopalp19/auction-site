@@ -46,7 +46,7 @@ export default Ember.Route.extend(serverReq, {
     renderSuccessTemplate: function() {
       var self = this;
       self.controllerFor(self.routeName).set("submitBidResponse","Bid Successful!");
-      self.render('auction.view-auction-bid-success');
+      self.render('auction.view-auction');
     },
     renderFailureTemplate: function() {
       var self = this;

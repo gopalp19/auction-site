@@ -1,0 +1,9 @@
+<h1 class="roboto" style="margin-top: 50px; margin-bottom: 30px">User Account</h1>
+
+{{other-user-view userData=userData readonly=readonly specialReadonly=specialReadonly}}
+<div class="panel-heading">Recently Bid On By User</div>
+<div class="row">
+  {{#each bidData as |bidData|}}
+    {{bid-card bidAuction=bidData.bidAuction}}
+  {{/each}}
+</div>

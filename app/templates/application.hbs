@@ -17,7 +17,7 @@
         Auctions
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        {{link-to 'View Open Auctions' 'auctions-grid' class="dropdown-item"}}
+        {{link-to 'View Open Auctions' 'auctions-grid' (query-params searchString="") class="dropdown-item"}}
         {{link-to 'Search Auctions' 'auctions-search' class="dropdown-item"}}
         {{link-to 'Create an Auction' 'auction.create-auction' class="dropdown-item"}}
       </div>

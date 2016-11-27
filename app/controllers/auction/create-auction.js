@@ -105,7 +105,7 @@ export default Ember.Controller.extend(serverReq, {
       var auctionData = {
         "auction": newAuction,
         "selectedCategories": this.get('selectedTags'),
-      }
+      };
 
       this.submitNewAuction(auctionData).then(function(response){
         self.send('renderSuccessTemplate');

@@ -44,7 +44,7 @@
         </tbody>
       </table>
       {{#if auctionHasBid}}
-          <div class="panel-info">{{link-to 'user.view-user' highBidUser}}High Bidder: {{highBidUser}}</div>
+          <div class="panel-info">High Bidder: {{#link-to 'user.view-other-user' highBidUser}}{{highBidUser}}{{/link-to}}</div>
       {{else}}
           <div class="panel-info">High Bidder: {{highBidUser}}</div>
       {{/if}}
@@ -57,7 +57,6 @@
           <button type="submit" class="btn btn-primary" >Submit Bid</button>
       </form>
     </div>
-
 
     {{#if auction.auctionBuyNow}}<br>
       <div class="form-group jumbotron" style="padding: 1rem 2rem;">

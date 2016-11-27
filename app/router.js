@@ -13,6 +13,7 @@ Router.map(function() {
     this.route('create-user-successful');
     this.route('view-user');
     this.route('view-cart');
+    this.route('view-other-user', { path: 'view-other-user/:username' });
   });
 
   this.route('auction', function() {
@@ -21,7 +22,7 @@ Router.map(function() {
   });
 
   this.route('auctions-grid');
-  this.route('auctions-grid',{path: '/:isSearching'});
+  this.route('search-grid');
   this.route('error');
 
   this.route('admin', function() {

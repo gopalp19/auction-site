@@ -15,7 +15,7 @@ export default Ember.Controller.extend(serverReq, {
 
       self.searchAuctionsByString(keywordString).then(function(response) {
         if(response) {
-          self.transitionToRoute('auctions-grid',{isSearching:true}).then(function(route){
+          self.transitionToRoute('search-grid').then(function(route){
             route.controller.set('headerText',"Search Results");
             route.controller.set('auctions',response);
           });
