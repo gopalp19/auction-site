@@ -7,6 +7,7 @@ export default Ember.Controller.extend(serverReq, {
 
   auctionName: "",
   auctionDescription: "",
+  auctionQuantity: "",
 
   itemName: "",
   itemDescription: "",
@@ -98,6 +99,7 @@ export default Ember.Controller.extend(serverReq, {
         "auctionBuyNow": this.get('canBuy'),
         "auctionBuyNowPrice": this.get('buyNowPrice'),
         "auctionItemId": this.get('selectedItem').id,
+        "quantity": this.get('auctionQuantity')
       };
 
       var auctionData = {

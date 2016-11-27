@@ -1,5 +1,6 @@
 <h1 style="margin-top: 50px; margin-bottom: 30px">Create a New Auction</h1>
 
+<div class="container">
 <form {{action "submitNewAuction" on="submit"}}>
 
     {{#if errorMessage}}
@@ -19,9 +20,19 @@
     </div>
 
     <div class="form-group">
-      <label class="registration-label">Item</label>
-      {{ember-selectize content=predefinedItems optionValuePath="content.id" optionLabelPath="content.title" tabindex=6
-        selection=selectedItem placeholder="Select an item"}}
+
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="registration-label">Item</label>
+          {{ember-selectize content=predefinedItems optionValuePath="content.id" optionLabelPath="content.title" tabindex=6
+            selection=selectedItem placeholder="Select an item"}}
+        </div>
+        <div class="col-sm-6">
+            <label class="registration-label">Quantity</label>
+            {{input value=auctionQuantity placeholder="Item Quantity" class="form-control"}}
+        </div>
+      </div>
+
       <label class="registration-label">Item not listed?
         <button {{action "addNewItem"}} style="margin-top: 10px;" type="submit" class="btn btn-success">Add it!</button>
       </label>
@@ -50,24 +61,31 @@
           placeholder="Select a category" create-item=(action "tagCreate")}}
     </div>
 
-    <div class="form-group">
-      <label class="registration-label">Auction Start Time</label>
-      {{bs-datetimepicker date=auctionStartTime format='MM/DD/YYYY h:mm a' useCurrent=true minDate=minDate updateDate=(action "startTimeSelected")}}
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label class="registration-label">Auction Start Time</label>
+        {{bs-datetimepicker date=auctionStartTime format='MM/DD/YYYY h:mm a' useCurrent=true minDate=minDate updateDate=(action "startTimeSelected")}}
+      </div>
+      <div class="col-sm-6">
+        <label class="registration-label">Auction End Time</label>
+        {{bs-datetimepicker date=auctionEndTime useCurrent=false minDate=endMinDate updateDate=(action "endTimeSelected")}}
+      </div>
     </div>
 
-    <div class="form-group">
-      <label class="registration-label">Auction End Time</label>
-      {{bs-datetimepicker date=auctionEndTime useCurrent=false minDate=endMinDate updateDate=(action "endTimeSelected")}}
-    </div>
+    <div class="form-check row">
+      <div class="col-sm-2">
+        <label class="form-check-label">
+        {{input type="checkbox" class="form-check-input" checked=canBuy}} can be bought</label><br>
+      </div>
 
-    <div class="form-check">
-      <label class="form-check-label">
-      {{input type="checkbox" class="form-check-input" checked=canBuy}} can be bought</label><br>
+      <div class="col-sm-10">
+        {{#if canBuy}}
+          <label class="registration-label">Buy Now Price</label>
+          {{input value=buyNowPrice placeholder="Buy Now Price" class="form-control" required="required"}}
+        {{/if}}
+      </div>
     </div>
-    {{#if canBuy}}
-      <label class="registration-label">Buy Now Price</label>
-      {{input value=buyNowPrice placeholder="Buy Now Price" class="form-control" required="required"}}
-    {{/if}}
 
     <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Create</button>
   </form>
+</div>

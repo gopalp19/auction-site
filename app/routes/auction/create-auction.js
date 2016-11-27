@@ -46,6 +46,7 @@ export default Ember.Route.extend(serverReq, {
 
       controller.set('auctionName', "");
       controller.set('auctionDescription', "");
+      controller.set('auctionQuantity', "");
 
       controller.set('itemName', "");
       controller.set('itemDescription', "");

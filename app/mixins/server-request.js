@@ -207,5 +207,18 @@ export default Ember.Mixin.create({
     return deferred;
   },
 
+  checkoutCart: function(username){
+      var requestURL = this.get('baseURL') + 'users/checkoutCart/' + username;
+
+      var deferred = this.get('ajax').request(requestURL, {
+          method: 'GET',
+          headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+      });
+      return deferred;
+  }
+
 
 });

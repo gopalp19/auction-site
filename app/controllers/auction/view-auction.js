@@ -20,7 +20,10 @@ export default Ember.Controller.extend(serverReq, {
   loggedIn: false,
   errorMessage: "",
 
+  startDate: new Date(),
+
   auction: {},
+  bids: [],
 
   actions: {
 

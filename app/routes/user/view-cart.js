@@ -17,4 +17,11 @@ export default Ember.Route.extend(serverReq, {
 
   },
 
+  resetController: function(controller, isExiting, transition) {
+    if (isExiting) {
+      controller.set('auctions', []);
+      controller.set('cartTotal', "");
+    }
+  }
+
 });
