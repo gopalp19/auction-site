@@ -22,11 +22,7 @@
 
 <div class="form-group">
   <label class="registration-label">Shipping address</label>
-  {{input value=userData.streetAddress placeholder="Street Address" class="form-control" readonly=readonly}}
-  {{input value=userData.apartmentNumber placeholder="Apartment, Suite, Bldg. (Optional)" class="form-control" readonly=readonly}}
-  {{input value=userData.zipCode placeholder="Zip Code" class="form-control" readonly=readonly}}
-  <label>Chicago, IL</label>
-  <label>United States</label>
+  {{textarea value=userData.billTo placeholder="Enter full address" class="form-control" readonly=readonly rows="4"}}
 </div>
 
 <div class="form-check">
