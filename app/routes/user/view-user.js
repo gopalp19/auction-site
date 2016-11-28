@@ -14,6 +14,10 @@ export default Ember.Route.extend(serverReq, {
       console.log("test");
       self.controllerFor(self.routeName).set('userData', response);
     });
+    this.getSubscriptions(user.username).then(function(response){
+      console.log(response);
+      self.controllerFor(self.routeName).set('subscriptionData',response);
+    });
 
   },
 

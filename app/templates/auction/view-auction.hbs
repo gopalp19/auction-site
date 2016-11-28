@@ -18,7 +18,7 @@
         <div class="panel-heading">Auction Description: {{auctionDescription}}</div>
         <div class="panel-info">Seller: {{auctionSeller}}</div>
         <div class="panel-info">Quantity: {{auction.quantity}}</div>
-        <div class="panel-info">Item Name: {{auction.itemName}}</div>
+        <div class="panel-info">Item Name: {{auction.itemName}}<button type="submit" {{action "followItem"}} class="btn btn-info" style="display:inline-block; margin: 10px;">Subscribe To Item</button></div>
         <div class="panel-info">Item Description: {{auction.itemDescription}}</div>
         <div class="panel-info">Time Left: {{countdown-string endDate=startDate startDate=auction.auctionEndTime}}</div>
         <div class="panel-info">Tags:

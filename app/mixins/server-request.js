@@ -273,5 +273,57 @@ export default Ember.Mixin.create({
     return deferred;
   },
 
+  searchAuctionItemByString: function(searchString) {
+    var requestURL = this.get('baseURL') + 'auctions/searchAuctionItems/' + searchString;
+    var deferred = this.get('ajax').request(requestURL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+    return deferred;
+  },
+
+  subscribeUserToItem: function(subscriptionData) {
+    var data = JSON.stringify(subscriptionData);
+    var requestURL = this.get('baseURL') + 'users/subscribe';
+    var deferred = this.get('ajax').request(requestURL, {
+      method: 'POST',
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: data
+    });
+    return deferred;
+  },
+
+  getSubscriptions: function(username) {
+    var requestURL = this.get('baseURL') + 'users/getSubscriptions/' + username;
+    var deferred = this.get('ajax').request(requestURL, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+    return deferred;
+  },
+
+  unsubscribeUserFromItem: function(subData,itemId) {
+    var data = JSON.stringify(subData);
+    var requestURL = this.get('baseURL') + 'users/unsubscribe/' + itemId;
+    var deferred = this.get('ajax').request(requestURL, {
+      method: 'POST',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type': 'application/json'
+      },
+      data: data
+    });
+    return deferred;
+  }
+
 
 });

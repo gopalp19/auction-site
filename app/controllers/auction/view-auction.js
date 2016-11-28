@@ -46,37 +46,37 @@ export default Ember.Controller.extend(serverReq, {
 
   actions: {
 
-    submitBid: function(){
+    submitBid: function () {
 
-      this.set("errorMessage","");
-      this.set("submitBidResponse","");
+      this.set("errorMessage", "");
+      this.set("submitBidResponse", "");
       var self = this;
       var user = self.get('session').get('data').authenticated.userData;
-      if(!user) {
-        self.set("errorMessage","You must be logged in to bid.");
+      if (!user) {
+        self.set("errorMessage", "You must be logged in to bid.");
         return;
       }
-      if(user.username === this.get("auctionSeller")) {
-        self.set("errorMessage","You cannot bid on your own auction!");
+      if (user.username === this.get("auctionSeller")) {
+        self.set("errorMessage", "You cannot bid on your own auction!");
         return;
       }
 
-      var newBid ={
+      var newBid = {
         username: user.username,
         amount: self.get('newBidAmount')
       };
-      var bidData ={
+      var bidData = {
         bid: newBid,
-        auctionId: parseInt(self.get("auctionId"),10)
+        auctionId: parseInt(self.get("auctionId"), 10)
       };
 
-      self.submitBid(bidData).then(function(response){
-        if(response.isSuccessful){
+      self.submitBid(bidData).then(function (response) {
+        if (response.isSuccessful) {
           //self.send('renderSuccessTemplate');
-          self.transitionToRoute('success').then(function(route){
+          self.transitionToRoute('success').then(function (route) {
             route.controller.set('message', "Congrats! Auction bid has been placed!");
           });
-        }else {
+        } else {
           self.send('renderFailureTemplate');
         }
       });
@@ -86,14 +86,14 @@ export default Ember.Controller.extend(serverReq, {
       var self = this;
       var user = self.get('session').get('data').authenticated.userData;
 
-      var buyData ={
+      var buyData = {
         username: user.username,
-        auctionId: parseInt(self.get("auctionId"),10)
+        auctionId: parseInt(self.get("auctionId"), 10)
       };
 
-      self.buyAuction(buyData).then(function(response){
-        if(response.isSuccessful) {
-          self.transitionToRoute('success').then(function(route){
+      self.buyAuction(buyData).then(function (response) {
+        if (response.isSuccessful) {
+          self.transitionToRoute('success').then(function (route) {
             route.controller.set('message', "Congrats! Auction is bought, and is now in your cart");
           });
         }
@@ -103,22 +103,21 @@ export default Ember.Controller.extend(serverReq, {
       });
     },
 
-    stopAuctionAction: function(){
+    stopAuctionAction: function () {
       var self = this;
       var user = self.get('session').get('data').authenticated.userData;
-      this.set("errorMessage","");
+      this.set("errorMessage", "");
 
-      var data ={
+      var data = {
         username: user.username,
-        auctionId: parseInt(self.get("auctionId"),10),
+        auctionId: parseInt(self.get("auctionId"), 10),
         isAdmin: user.isAdmin
       };
 
 
-
-      self.stopAuction(data).then(function(response){
-        if(response.isSuccessful) {
-          self.transitionToRoute('success').then(function(route){
+      self.stopAuction(data).then(function (response) {
+        if (response.isSuccessful) {
+          self.transitionToRoute('success').then(function (route) {
             route.controller.set('message', "Congrats! Auction has been stopped");
           });
         }
@@ -128,17 +127,17 @@ export default Ember.Controller.extend(serverReq, {
       });
     },
 
-    flagAuctionAction: function(){
+    flagAuctionAction: function () {
       var self = this;
-      this.set("errorMessage","");
+      this.set("errorMessage", "");
 
-      var data ={
-        auctionId: parseInt(self.get("auctionId"),10),
+      var data = {
+        auctionId: parseInt(self.get("auctionId"), 10),
       };
 
-      self.flagAuction(data).then(function(response){
-        if(response.isSuccessful) {
-          self.transitionToRoute('success').then(function(route){
+      self.flagAuction(data).then(function (response) {
+        if (response.isSuccessful) {
+          self.transitionToRoute('success').then(function (route) {
             route.controller.set('message', "Success! Auction has been flagged");
           });
         }
@@ -146,8 +145,32 @@ export default Ember.Controller.extend(serverReq, {
           self.set("errorMessage", response.responseMessage);
         }
       });
+    },
+
+
+    followItem: function () {
+      var self = this;
+      var user = self.get('session').get('data').authenticated.userData;
+      var auction = self.get('auction');
+      if (!user) {
+        self.set("errorMessage", "You must be logged in to subscribe to items.");
+        return;
+      }
+      console.log("username: " + user.username + " itemName: " + auction.itemName);
+      var data = {
+        itemName: auction.itemName,
+        userName: user.username
+      };
+      self.subscribeUserToItem(data).then(function (response) {
+        if (response.isSuccessful) {
+          self.transitionToRoute('success').then(function (route) {
+            route.controller.set('message', "You have been subscribed to " + auction.itemName);
+          });
+        } else {
+          self.set('errorMessage', response.responseMessage);
+        }
+      });
     }
-    
   }
 
 });

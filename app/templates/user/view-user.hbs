@@ -2,6 +2,27 @@
 
 {{user-view userData=userData readonly=readonly specialReadonly=specialReadonly}}
 
+<table class="table table-bordered table-hover">
+    <thead class="thead-inverse">
+    <tr>
+        <th>#</th>
+        <th>Item Name</th>
+        <th>Item Description</th>
+        <th>Unsubscribe</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each subscriptionData as |item index|}}
+        <tr>
+            <td scope="row" >{{index}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.description}}</td>
+            <td><button class="btn btn-danger" type="submit" {{action "unsubscribeFromItem" item index}} style="align-self: center">Unsubscribe</button></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+
 <button {{action "updateUser"}} style="margin-top: 10px;" type="submit" class="btn btn-primary">{{updateLabel}}</button>
 
 <button {{action "deleteUser"}} style="margin-top: 10px;" type="submit" class="btn btn-danger">Delete Account</button>

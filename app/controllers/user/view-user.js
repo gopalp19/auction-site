@@ -4,6 +4,7 @@ import serverReq from '../../mixins/server-request';
 export default Ember.Controller.extend(serverReq, {
 
   userData: {},
+  subscriptionData: Ember.A([]),
 
   readonly: true,
   specialReadonly: true,
@@ -29,6 +30,23 @@ export default Ember.Controller.extend(serverReq, {
 
         });
       }
+    },
+
+    unsubscribeFromItem: function(item,index) {
+      var self = this;
+      console.log("item " + item + " index: " + index);
+      var data = {
+        userName: self.userData.username
+      }
+      self.unsubscribeUserFromItem(data,item.id).then(function(response) {
+        if(response.isSuccessful) {
+          self.subscriptionData.removeAt(index);
+        }else {
+          self.transitiontoRoute('failure').then(function(route) {
+            route.controller.set('message',"Failed to unsubscribe from item");
+          });
+        }
+      });
     },
 
     deleteUser: function(){
