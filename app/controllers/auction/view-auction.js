@@ -114,6 +114,8 @@ export default Ember.Controller.extend(serverReq, {
         isAdmin: user.isAdmin
       };
 
+
+
       self.stopAuction(data).then(function(response){
         if(response.isSuccessful) {
           self.transitionToRoute('success').then(function(route){
@@ -124,7 +126,28 @@ export default Ember.Controller.extend(serverReq, {
           self.set("errorMessage", response.responseMessage);
         }
       });
+    },
+
+    flagAuctionAction: function(){
+      var self = this;
+      this.set("errorMessage","");
+
+      var data ={
+        auctionId: parseInt(self.get("auctionId"),10),
+      };
+
+      self.flagAuction(data).then(function(response){
+        if(response.isSuccessful) {
+          self.transitionToRoute('success').then(function(route){
+            route.controller.set('message', "Success! Auction has been flagged");
+          });
+        }
+        else {
+          self.set("errorMessage", response.responseMessage);
+        }
+      });
     }
+    
   }
 
 });

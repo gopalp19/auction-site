@@ -1,0 +1,22 @@
+<h1 class="roboto" style="margin-top: 50px; margin-bottom: 30px">Flagged Auctions</h1>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Auction Name</th>
+      <th>Item Name</th>
+      <th>Item Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each auctions as |auction index|}}
+      <tr>
+        <th scope="row">{{index}}</th>
+        <td>{{#link-to 'auction.view-auction' auction.auctionId}}{{auction.auctionName}}{{/link-to}}</td>
+        <td>{{auction.itemName}}</td>
+        <td>{{auction.itemDescription}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

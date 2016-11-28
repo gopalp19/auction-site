@@ -28,6 +28,7 @@ Router.map(function() {
   this.route('admin', function() {
     this.route('users');
     this.route('categories');
+    this.route('flagged-auctions');
   });
   this.route('auctions-search');
   this.route('success');

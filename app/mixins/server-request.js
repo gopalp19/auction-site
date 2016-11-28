@@ -247,5 +247,31 @@ export default Ember.Mixin.create({
       return deferred;
   },
 
+  flagAuction: function(flagData){
+      var data = JSON.stringify(flagData);
+      var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/flagAuction', {
+          method: 'POST',
+          headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: data
+      });
+      return deferred;
+  },
+
+  getFlaggedAuctions: function(){
+    var requestURL = this.get('baseURL') + 'auctions/getFlaggedAuctions';
+
+    var deferred = this.get('ajax').request(requestURL, {
+        method: 'GET',
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    });
+    return deferred;
+  },
+
 
 });

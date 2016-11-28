@@ -23,9 +23,11 @@
         <div class="panel-info">Time Left: {{countdown-string endDate=startDate startDate=auction.auctionEndTime}}</div>
         <div class="panel-info">Tags:
         {{ember-selectize content=auction.categories tabindex=6 selection=auction.categories multiple=true disabled=true}}</div>
+        <button type="submit" {{action "flagAuctionAction"}} class="btn btn-danger">Flag Auction</button>
       </div>
     </div>
 
+    <div class="row">
     <div class="form-group jumbotron" style="margin-top: 2rem; margin-bottom: 0rem; padding: 1rem 2rem;">
       <h3 style="margin-top: 10px; margin-bottom: 10px">Bid Data</h3>
       <table class="table table-bordered table-hover">
@@ -60,6 +62,7 @@
           <button type="submit" class="btn btn-primary" >Submit Bid</button>
       </form>
     </div>
+  </div>
 
     {{#if auction.auctionBuyNow}}<br>
       <div class="form-group jumbotron" style="padding: 1rem 2rem;">
