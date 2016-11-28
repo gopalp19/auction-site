@@ -64,6 +64,8 @@
     </div>
   </div>
 
+
+  <div class="row">
     {{#if auction.auctionBuyNow}}<br>
       <div class="form-group jumbotron" style="padding: 1rem 2rem;">
         <h3 style="margin-top: 10px; margin-bottom: 10px">Auction Available to Buy</h3>
@@ -72,7 +74,7 @@
         <button type="submit" {{action "buyAuctionAction"}} class="btn btn-primary">Buy Auction Item</button><br>
       </div>
     {{/if}}
-
+  </div>
 
     {{#if auctionCanBeStopped}}<br>
       <button type="submit" {{action "stopAuctionAction"}} class="btn btn-primary">Stop Auction</button><br>

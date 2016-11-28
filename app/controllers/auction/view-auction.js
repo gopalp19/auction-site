@@ -56,8 +56,12 @@ export default Ember.Controller.extend(serverReq, {
         self.set("errorMessage", "You must be logged in to bid.");
         return;
       }
-      if (user.username === this.get("auctionSeller")) {
-        self.set("errorMessage", "You cannot bid on your own auction!");
+      if(!user.canBuy) {
+        self.set("errorMessage","You do not have the entitlement to bid on auctions");
+        return;
+      }
+      if(user.username === this.get("auctionSeller")) {
+        self.set("errorMessage","You cannot bid on your own auction!");
         return;
       }
 
@@ -83,10 +87,21 @@ export default Ember.Controller.extend(serverReq, {
     },
 
     buyAuctionAction(){
+      this.set("errorMessage","");
+      this.set("submitBidResponse","");
       var self = this;
       var user = self.get('session').get('data').authenticated.userData;
 
-      var buyData = {
+      if(!user.canBuy) {
+        self.set("errorMessage","You do not have the entitlement to bid on auctions");
+        return;
+      }
+      if(user.username === this.get("auctionSeller")) {
+        self.set("errorMessage","You cannot bid on your own auction!");
+        return;
+      }
+
+      var buyData ={
         username: user.username,
         auctionId: parseInt(self.get("auctionId"), 10)
       };

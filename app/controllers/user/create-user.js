@@ -24,7 +24,7 @@ export default Ember.Controller.extend(serverReq, {
       this.set('errorMessage', "");
 
       var userData = this.get('userData');
-      var shipFrom = userData.streetAddress + " " + userData.apartmentNumber + " " + userData.zipCode + " Chicago, IL United States";
+      //var shipFrom = userData.streetAddress + " " + userData.apartmentNumber + " " + userData.zipCode + " Chicago, IL United States";
 
       var newUser ={
         "username": userData.username,
@@ -32,9 +32,9 @@ export default Ember.Controller.extend(serverReq, {
         "firstName": userData.firstName,
         "lastName": userData.lastName,
         "email": userData.email,
-        "shipFrom": shipFrom,
-        "shipTo": shipFrom,
-        "billTo": shipFrom,
+        "shipFrom": userData.billTo,
+        "shipTo": userData.billTo,
+        "billTo": userData.billTo,
         "canBuy": userData.canBuy,
         "canSell": userData.canSell
       };
