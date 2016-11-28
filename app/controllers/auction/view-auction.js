@@ -19,16 +19,35 @@ export default Ember.Controller.extend(serverReq, {
   submitBidResponse: "",
   loggedIn: false,
   errorMessage: "",
+  predefinedTags: [],
 
   startDate: new Date(),
 
   auction: {},
   bids: [],
 
+  auctionCanBeStopped: Ember.computed('auctionSeller', function(){
+    var signedIn = this.get('session').get('isAuthenticated');
+    if(signedIn){
+        var user = this.get('session').get('data').authenticated.userData;
+        if(user.isAdmin){
+          //All admins can delete all auctions
+          return true;
+        }else{
+          if(!Ember.isEmpty(this.get("auctionSeller")) && user.username == this.get("auctionSeller")){
+            //Then this user is owner of auction and can remove it
+            return true;
+          }
+        }
+    }
+
+    return false;
+  }),
+
   actions: {
 
     submitBid: function(){
-      console.log("hihi\n");
+
       this.set("errorMessage","");
       this.set("submitBidResponse","");
       var self = this;
@@ -63,7 +82,7 @@ export default Ember.Controller.extend(serverReq, {
       });
     },
 
-    submitAuction(){
+    buyAuctionAction(){
       var self = this;
       var user = self.get('session').get('data').authenticated.userData;
 
@@ -80,6 +99,29 @@ export default Ember.Controller.extend(serverReq, {
         }
         else {
           self.transitionToRoute('error');
+        }
+      });
+    },
+
+    stopAuctionAction: function(){
+      var self = this;
+      var user = self.get('session').get('data').authenticated.userData;
+      this.set("errorMessage","");
+
+      var data ={
+        username: user.username,
+        auctionId: parseInt(self.get("auctionId"),10),
+        isAdmin: user.isAdmin
+      };
+
+      self.stopAuction(data).then(function(response){
+        if(response.isSuccessful) {
+          self.transitionToRoute('success').then(function(route){
+            route.controller.set('message', "Congrats! Auction has been stopped");
+          });
+        }
+        else {
+          self.set("errorMessage", response.responseMessage);
         }
       });
     }

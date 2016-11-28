@@ -234,5 +234,18 @@ export default Ember.Mixin.create({
     return deferred;
   },
 
+  stopAuction: function(stopData){
+      var data = JSON.stringify(stopData);
+      var deferred = this.get('ajax').request(this.get('baseURL') + 'auctions/stopAuction', {
+          method: 'POST',
+          headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: data
+      });
+      return deferred;
+  },
+
 
 });

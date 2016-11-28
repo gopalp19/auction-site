@@ -15,11 +15,14 @@
         <img src="/assets/images/placeholder.png" alt="Card image" style="display:block; margin:auto;"/>
       </div>
       <div class="col-sm-9 jumbotron" style="padding: 1rem 2rem;">
-        <div class="panel-heading">Description</div>
-        <div class="panel-body">{{auctionDescription}}</div>
+        <div class="panel-heading">Auction Description: {{auctionDescription}}</div>
         <div class="panel-info">Seller: {{auctionSeller}}</div>
         <div class="panel-info">Quantity: {{auction.quantity}}</div>
+        <div class="panel-info">Item Name: {{auction.itemName}}</div>
+        <div class="panel-info">Item Description: {{auction.itemDescription}}</div>
         <div class="panel-info">Time Left: {{countdown-string endDate=startDate startDate=auction.auctionEndTime}}</div>
+        <div class="panel-info">Tags:
+        {{ember-selectize content=auction.categories tabindex=6 selection=auction.categories multiple=true disabled=true}}</div>
       </div>
     </div>
 
@@ -63,7 +66,13 @@
         <h3 style="margin-top: 10px; margin-bottom: 10px">Auction Available to Buy</h3>
         <label class="registration-label">Buy Now Price: ${{auction.auctionBuyNowPrice}}</label><br>
 
-        <button type="submit" {{action "submitAuction"}} class="btn btn-primary">Buy Auction Item</button><br>
+        <button type="submit" {{action "buyAuctionAction"}} class="btn btn-primary">Buy Auction Item</button><br>
       </div>
     {{/if}}
+
+
+    {{#if auctionCanBeStopped}}<br>
+      <button type="submit" {{action "stopAuctionAction"}} class="btn btn-primary">Stop Auction</button><br>
+    {{/if}}
+
 </div>
