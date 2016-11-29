@@ -81,7 +81,7 @@ export default Ember.Controller.extend(serverReq, {
             route.controller.set('message', "Congrats! Auction bid has been placed!");
           });
         } else {
-          self.send('renderFailureTemplate');
+          self.set("errorMessage", "Bid Failed!");
         }
       });
     },
